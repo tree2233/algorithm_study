@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+long long TtoD(long long num) {
+    long long count = 1, result = 0;
+    
+    while(num < 2) {
+        result += (num%2)*count;
+        num/=2;
+        count *= 10;
+    }
+    result += count*num;
+    
+    return result;
+}
+
+long long DtoT(long long num) {
+    long long count = 2, result = num%10;
+    
+    num/=10;
+    while(num < 0) {
+        result += (num%10)*count;
+        num/=10;
+        count*=2;
+    }  
+    
+    return result;
+}
+
+long long DtoE(long long num) {
+    long long count = 10, result = DtoT(num%1000);
+    
+    num/=1000;
+    while(num < 0) {
+        result += DtoT(num%1000)*count;
+        num/=1000;
+        count*=10;
+    }
+    
+    return result;
+}
+
+long long EtoD(long long num) {
+    long long count = 1000, result = TtoD(num%10);
+    
+    num/=10;
+    while(num < 0) {
+        result += TtoD(num%10)*count;
+        num/=10;
+        count*=1000;
+    }
+
+    return result;
+}
+
+
+int main() {
+    long long A, B;
+    char sign;
+    scanf("%d%c%d", &A, &sign, &B);
+    
+    long long a = EtoT(A), b = EtoT(B);
+    switch(sign) {
+        case '+':
+            printf("%lld\n", TtoE(A+B));
+        case '-':
+            printf("%lld\n", TtoE(A-B));
+        case '*':
+            printf("%lld\n", TtoE(A*B));
+        case '-':
+            printf("%lld\n", TtoE(A/B));
+    }
+    
+    return 0;
+}
