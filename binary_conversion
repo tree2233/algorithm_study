@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-long long TtoD(long long num) {
+long long DecimalToBinary(long long num) {
     long long count = 1, result = 0;
     
     while(num < 2) {
@@ -14,7 +14,7 @@ long long TtoD(long long num) {
     return result;
 }
 
-long long DtoT(long long num) {
+long long BinaryToDecimal(long long num) {
     long long count = 2, result = num%10;
     
     num/=10;
@@ -27,7 +27,7 @@ long long DtoT(long long num) {
     return result;
 }
 
-long long DtoE(long long num) {
+long long BinaryToOctal(long long num) {
     long long count = 10, result = DtoT(num%1000);
     
     num/=1000;
@@ -40,7 +40,7 @@ long long DtoE(long long num) {
     return result;
 }
 
-long long EtoD(long long num) {
+long long OctalToBinary(long long num) {
     long long count = 1000, result = TtoD(num%10);
     
     num/=10;
@@ -53,23 +53,19 @@ long long EtoD(long long num) {
     return result;
 }
 
+long long OctalToDecimal(long long num) {
+    
+}
+
+long long DecimalToOctal(long long num) {
+
+}
+
 
 int main() {
     long long A, B;
     char sign;
     scanf("%d%c%d", &A, &sign, &B);
-    
-    long long a = EtoT(A), b = EtoT(B);
-    switch(sign) {
-        case '+':
-            printf("%lld\n", TtoE(A+B));
-        case '-':
-            printf("%lld\n", TtoE(A-B));
-        case '*':
-            printf("%lld\n", TtoE(A*B));
-        case '-':
-            printf("%lld\n", TtoE(A/B));
-    }
     
     return 0;
 }
