@@ -12,7 +12,7 @@ long long OctalToDecimal(long long num) {
     }
     
     for(int i = 0; i < count; i++) {
-        sum += arr[i]*pow(8, i);
+        sum += arr[i]*(long long)pow(8, i); // pow는 정수가 아닌 자료형을 위한 함수여서 캐스팅을 안 해주면 문제가 생기는 것 같은데 이유가 뭘까?
     }
     
     return sum;
@@ -27,7 +27,7 @@ long long DecimalToOctal(long long num) {
     }
     
     for(int i = 0; i < count; i++) {
-        sum += arr[i]*pow(10, i);
+        sum += arr[i]*(long long)pow(10, i);
     }
     
     return sum;
