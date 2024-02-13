@@ -2,70 +2,41 @@
 
 using namespace std;
 
-typedef struct _node{
+typedef struct _sNode{
     struct _node* nextNode;
     int data;
-}node;
+}sNode;
 
 typedef struct _stack{
-    node* top;
+    sNode* top;
     int cur;
 }stack;
 
-void init(stack*s);
-void push(stack*s, int num);
-int pop(stack*s);
-bool isEmpty(stack*s);
-int top(stack*s);
-int size(stack*s);
+void sInit(stack*s);
+void sPush(stack*s, int num);
+int sPop(stack*s);
+bool sIsEmpty(stack*s);
+int sTop(stack*s);
+int sSize(stack*s);
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
     
-    int N, op, num;
-    stack s;
-    
-    init(&s);
-    cin >> N;
-
-    while(N--) {
-        cin >> op;
-        switch(op) {
-        case 1:
-            cin >> num;
-            push(&s, num);
-            break;
-        case 2:
-            cout << pop(&s) << '\n';
-            break;
-        case 3:
-            cout << size(&s) << '\n';
-            break;
-        case 4:
-            cout << isEmpty(&s) << '\n';
-            break;
-        case 5:
-            cout << top(&s) << '\n';
-            break;
-        }        
-    }
-    
-    return 0;
 }
 
-void init(stack* s) {
+void sInit(stack* s) {
     s->top = NULL;
     s->cur = 0;
 }
 
-bool isEmpty(stack* s) {
+bool sIsEmpty(stack* s) {
     return s->cur == 0;
 }
 
-void push(stack* s, int data) {
-    node* temp = new node;
+void sPush(stack* s, int data) {
+    sNode* temp = new node;
     temp->data = data;
     temp->nextNode = s->top;
     
@@ -73,11 +44,11 @@ void push(stack* s, int data) {
     s->cur++;
 }
 
-int pop(stack* s) {
+int sPop(stack* s) {
     if(isEmpty(s))
         return -1;
     
-    node* temp = s->top;
+    sNode* temp = s->top;
     int data = temp->data;
     
     s->top = temp->nextNode;
@@ -85,11 +56,11 @@ int pop(stack* s) {
     return data;
 }
 
-int size(stack* s) {
+int sSize(stack* s) {
     return s->cur;
 }
 
-int top(stack* s) {
+int sTop(stack* s) {
     if(isEmpty(s))
         return -1;
         
