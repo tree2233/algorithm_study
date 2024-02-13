@@ -1,0 +1,155 @@
+#include <iostream>
+
+using namespace std;
+
+typedef struct _dNode{
+    struct _dNode* prevNode;
+    struct _dNode* nextNode;
+    int data;
+}dNode;
+
+typedef struct _deque{
+    dNode* front;
+    dNode* rear;
+    int cur;
+}deque;
+
+void dqInit(deque* d);
+bool dqIsEmpty(deque* d);
+//bool dqIsFull(deque* d);
+int dqSize(deque* d);
+void dqAddRear(deque* d, int data);
+void dqAddFront(deque* d, int data);
+int dqRemoveRear(deque* d);
+int dqRemoveFront(deque* d);
+int dqGetFirst(deque* d);
+int dqGetLast(deque* d);
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //내가 연결리스트로 구현한 deque은 약 30MB의 메모리를 사용했는데, c++의 deque stl을 사용하면 약 6MB정도만 써서 28279번 문제를 해결할 수 있다
+    //왜 메모리 사용량에서 차이가 날까?
+}
+
+void dqInit(deque* d) {
+    d->front = NULL;
+    d->rear = NULL;
+    d->cur = 0;
+}
+
+bool dqIsEmpty(deque* d) {
+    return d->cur == 0;
+}
+
+int dqSize(deque* d) {
+    return d->cur;
+}
+
+void dqAddRear(deque* d, int data) {
+    dNode* temp = new dNode;
+    
+    if(dqIsEmpty(d)) {
+        temp->data = data;
+        temp->nextNode = NULL;
+        temp->prevNode = NULL;
+        
+        d->front = temp;
+        d->rear = temp;
+        d->cur++;
+    }
+    else {
+        temp->data = data;
+        temp->nextNode = NULL;
+        temp->prevNode = d->rear;
+  
+        d->rear->nextNode = temp;
+        
+        d->rear = temp;
+        d->cur++;    
+    }
+}
+
+void dqAddFront(deque* d, int data) {
+    dNode* temp = new dNode;
+    
+    if(dqIsEmpty(d)) {
+        temp->data = data;
+        temp->nextNode = NULL;
+        temp->prevNode = NULL;
+        
+        d->front = temp;
+        d->rear = temp;
+        d->cur++;
+    }
+    else {
+        temp->data = data;
+        temp->prevNode = NULL;
+        temp->nextNode = d->front;
+  
+        d->front->prevNode = temp;
+
+        d->front = temp;
+        d->cur++;    
+    }
+}
+
+int dqRemoveRear(deque* d) {
+    if(dqIsEmpty(d))
+       return -1;
+    
+    dNode* temp = d->rear;
+    
+    int data = temp->data;
+    
+    if(d->cur != 1) {
+        d->rear = temp->prevNode;
+    }
+    else {
+        d->rear = NULL;
+        d->front = NULL;
+    }
+        
+    delete(temp);
+    
+    d->cur--;
+        
+    return data;
+}
+
+int dqRemoveFront(deque* d) {
+    if(dqIsEmpty(d))
+       return -1;
+    
+    dNode* temp = d->front;
+    
+    int data = temp->data;
+    
+    if(d->cur != 1) {
+        d->front = temp->nextNode;
+    }
+    else {
+        d->rear = NULL;
+        d->front = NULL;
+    }
+        
+    delete(temp);
+    
+    d->cur--;
+        
+    return data;
+}
+
+int dqGetFirst(deque* d) {
+    if(dqIsEmpty(d))
+        return -1;
+    
+    return d->front->data;
+}
+
+int dqGetLast(deque* d) {
+    if(dqIsEmpty(d))
+        return -1;
+    
+    return d->rear->data;
+}
