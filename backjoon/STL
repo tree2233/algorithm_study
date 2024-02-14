@@ -1,0 +1,23 @@
+1. vector
+vector<int> v; //선언
+.begin(), .end() //시작, 끝의 주소값 반환
+.front(), .back() //시작, 끝의 값 반환
+.size() //vector의 전체 크기 반환
+.emplace_back(num) //벡터에 값 삽입
+.push_back(num) //벡터에 값 삽입
+
+2. pair
+pair<int, int> p; //선언
+make_pair(num1, num2) //pair 생성
+
+3. map
+map<string, int> m; //선언
+map.insert(pair
+
+4. stack
+stack<int> s; //선언
+.
+
+5. queue
+
+5. deque
