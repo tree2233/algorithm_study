@@ -16,8 +16,22 @@ map.insert(pair
 
 4. stack
 stack<int> s; //선언
-.
+.push(num)
+.pop() //반환값 없음, front에 있는 값 제거
+.front() //front값 출력
 
 5. queue
+queue<int> s; //선언
+.push(num)
+.pop() //반환값 없음, front에 있는 값 제거
+.front() //front값 출력(큐의 경우 FILO이니 out되는 값)
 
 5. deque
+deque<int> d; //선언
+.push_back()
+.push_front()
+.pop_back() //반환값 없음, 값 제거
+.pop_front()
+.back()
+.front()
+
