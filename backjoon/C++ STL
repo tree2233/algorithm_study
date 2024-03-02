@@ -52,3 +52,15 @@ deque<int> d; //선언
 string str //선언
 .substr(n, k) //n번 index부터 k개의 문자로 부분 문자열 반환
 .compare(str2) //비교, 같으면 0 다르면 음, 양 반환
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. priority_queue //heap자료구조(tree자료구조 + 우선순위 정렬 log(N))로 구성된 queue
+priority_queue<int> pq //선언
+priority_queue<int, vector<int>, greater<int>> pq //자료형, container, compare_function을 포함한 선언
+// compare_function은 구조체를 전달해줘야 한다. struct cmp { bool operator() (int a, int b) { return a > b }}; 형식으로 선언후, cmp전달로 임의의
+// 비교함수를 전달할 수 있다.
+.push(num) //삽입
+.top() //최상단값 출력
+.pop() //반환값 없음 최상단 값 제거
+
