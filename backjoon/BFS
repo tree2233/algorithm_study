@@ -1,0 +1,20 @@
+void BFS(int v, int n) {
+    for(int nextNode = 1; nextNode <= n; nextNode++) {
+        if(checkBFS[nextNode] == 0 && matrix[v][nextNode] == 1) {
+            BFSdeque.push_back(nextNode);
+            BFSqueue.push(nextNode);
+            checkBFS[nextNode] = 1;
+        }
+    }
+
+    if(!BFSqueue.empty()) {
+        v = BFSqueue.front();
+        BFSqueue.pop();
+        BFS(v, n);
+    }
+}
+/*
+1. 순차 탐색 및 queue에 값 삽입
+2. queue의 끝 값을 꺼냄
+3. 다시 BFS실행
+4. queue가 빌 때까지 반복
